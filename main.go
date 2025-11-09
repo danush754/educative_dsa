@@ -44,4 +44,19 @@ func main() {
 
 	fmt.Println("zeroAndOnes", zerosAndTwos)
 
+	var sortedStack educativedsa.SortedInsertStack
+
+	sortedStack.Push(1)
+	sortedStack.Push(7)
+	sortedStack.Push(8)
+	sortedStack.Push(5)
+
+	// sortedStack.SortedInsert(5)
+	// sortedStack.SortStack()
+	// sortedStack.BottomInsert(0)
+
+	// sortedStack.ReverseStack()
+	sortedStack.InsertElementAtk(3, 5)
+	// sortedStack.ReverseKelements(2)
+	sortedStack.Print()
 }

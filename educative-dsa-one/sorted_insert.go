@@ -1,16 +1,18 @@
 package educativedsa
 
-import "fmt"
+import (
+	"fmt"
+)
 
 type SortedInsertStack struct {
-	data []int
+	Data []int
 }
 
 // isEmpty()
 
 func (s *SortedInsertStack) IsEmpty() bool {
 
-	return len(s.data) == 0
+	return len(s.Data) == 0
 
 }
 
@@ -18,15 +20,15 @@ func (s *SortedInsertStack) IsEmpty() bool {
 
 func (s *SortedInsertStack) Length() int {
 
-	return len(s.data)
+	return len(s.Data)
 }
 
 // print()
 
 func (s *SortedInsertStack) Print() {
 
-	for i := 0; i < len(s.data); i++ {
-		fmt.Print(s.data[i], " ")
+	for i := 0; i < len(s.Data); i++ {
+		fmt.Print(s.Data[i], " ")
 	}
 
 	fmt.Println()
@@ -35,9 +37,9 @@ func (s *SortedInsertStack) Print() {
 
 // push()
 
-func (s *SortedInsertStack) Push(data int) {
+func (s *SortedInsertStack) Push(Data int) {
 
-	s.data = append(s.data, data)
+	s.Data = append(s.Data, Data)
 }
 
 // pop()
@@ -46,9 +48,9 @@ func (s *SortedInsertStack) Pop() int {
 
 	if !s.IsEmpty() {
 
-		data := s.data[len(s.data)-1]
-		s.data = s.data[:len(s.data)-1]
-		return data
+		Data := s.Data[len(s.Data)-1]
+		s.Data = s.Data[:len(s.Data)-1]
+		return Data
 
 	}
 
@@ -61,12 +63,84 @@ func (s *SortedInsertStack) Peek() int {
 
 	if !s.IsEmpty() {
 
-		return s.data[len(s.data)-1]
+		return s.Data[len(s.Data)-1]
 	}
 
 	return -1
 }
 
-func SortedInsert(stk *SortedInsertStack, element int) {
+func (stk *SortedInsertStack) SortedInsert(element int) {
+	var temp int
 
+	if stk.Length() == 0 || stk.Peek() < element {
+		stk.Push(element)
+	} else {
+		temp = stk.Pop()
+		stk.SortedInsert(element)
+		stk.Push(temp)
+	}
+}
+
+func (stk *SortedInsertStack) SortStack() {
+
+	var temp int
+
+	if stk.Length() == 0 {
+		return
+	}
+
+	temp = stk.Pop()
+	stk.SortStack()
+	stk.SortedInsert(temp)
+
+}
+
+func (stk *SortedInsertStack) BottomInsert(element int) {
+	var temp int
+	if stk.Length() == 0 {
+		stk.Push(element)
+	} else {
+		temp = stk.Pop()
+		stk.BottomInsert(element)
+		stk.Push(temp)
+	}
+}
+
+func (stk *SortedInsertStack) ReverseStack() {
+	var temp int
+
+	if stk.Length() > 0 {
+
+		temp = stk.Pop()
+		stk.ReverseStack()
+
+		fmt.Println("temp", temp)
+		stk.BottomInsert(temp)
+	}
+}
+
+func (stk *SortedInsertStack) InsertElementAtk(element, index int) {
+	var temp int
+
+	if index == 1 {
+
+		stk.Push(element)
+		return
+	}
+
+	temp = stk.Pop()
+
+	stk.InsertElementAtk(element, index-1)
+	stk.Push(temp)
+
+}
+
+func (stk *SortedInsertStack) ReverseKelements(count int) {
+
+	if count == 0 {
+		return
+	}
+	temp := stk.Pop()
+	stk.ReverseKelements(count - 1)
+	stk.InsertElementAtk(temp, count)
 }
