@@ -56,7 +56,22 @@ func main() {
 	// sortedStack.BottomInsert(0)
 
 	// sortedStack.ReverseStack()
-	sortedStack.InsertElementAtk(3, 5)
-	// sortedStack.ReverseKelements(2)
-	sortedStack.Print()
+
+	sortedStack.ReverseKelements(3)
+
+	var minValue educativedsa.CorrectMinStack
+	minValue.Push(22)
+	minValue.Push(5)
+	minValue.Push(2)
+
+	minValue.Pop()
+
+	// fmt.Println("maxDepth", educativedsa.MaxDepthParanthesis("(((())))"))
+	fmt.Println("maxDepth", educativedsa.MaxDepthParanthesis("(())()"))
+
+	fmt.Println("longg", educativedsa.LongestValidParanthesis("(()"))
+	// fmt.Println("longg", educativedsa.LongestValidParanthesis(")()())"))
+	// fmt.Println("longg", educativedsa.LongestValidParanthesis(""))
+	// fmt.Println("longg", educativedsa.LongestValidParanthesis("())((()))(())()(()"))
+
 }

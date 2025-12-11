@@ -119,28 +119,21 @@ func (stk *SortedInsertStack) ReverseStack() {
 	}
 }
 
-func (stk *SortedInsertStack) InsertElementAtk(element, index int) {
-	var temp int
-
-	if index == 1 {
-
-		stk.Push(element)
-		return
-	}
-
-	temp = stk.Pop()
-
-	stk.InsertElementAtk(element, index-1)
-	stk.Push(temp)
-
-}
-
 func (stk *SortedInsertStack) ReverseKelements(count int) {
 
-	if count == 0 {
-		return
+	newQueue := new(Queue)
+
+	i := 0
+
+	for stk.Length() > 0 && i < count {
+		newQueue.Enqueue(stk.Pop())
+		i++
 	}
-	temp := stk.Pop()
-	stk.ReverseKelements(count - 1)
-	stk.InsertElementAtk(temp, count)
+
+	for newQueue.Length() != 0 {
+		stk.Push(newQueue.Dequeue().(int))
+	}
+
+	fmt.Printf("newQueue: %v\n", newQueue)
+
 }
